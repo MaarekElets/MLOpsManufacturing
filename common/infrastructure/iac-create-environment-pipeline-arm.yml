@@ -21,6 +21,7 @@ pr:
       - common/infrastructure/arm-templates/*
 
 pool:
+  name: "JW-Laptop"
   vmImage: "ubuntu-latest"
 
 variables:
