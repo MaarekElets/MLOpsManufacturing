@@ -21,7 +21,7 @@ resource "azurerm_key_vault" "kv" {
   location                 = azurerm_resource_group.rg.location
   resource_group_name      = azurerm_resource_group.rg.name
   tenant_id                = var.tenant_id
-  sku_name                 = "premium"
+  sku_name                 = "standard"
   purge_protection_enabled = true
 }
 
@@ -38,7 +38,7 @@ resource "azurerm_container_registry" "cr" {
   name                = "${local.resource_name_prefix_no_dashes}cr"
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
-  sku                 = "Premium"
+  sku                 = "Standard"
   admin_enabled       = true
 }
 
@@ -62,7 +62,7 @@ resource "azurerm_machine_learning_compute_cluster" "cpu_cluster" {
   name                          = "cpu-cluster"
   location                      = azurerm_resource_group.rg.location
   vm_priority                   = "Dedicated"
-  vm_size                       = "Standard_E4as_v4"
+  vm_size                       = "Standard_F2s_v2"
   machine_learning_workspace_id = azurerm_machine_learning_workspace.aml_workspace.id
 
   scale_settings {
@@ -80,12 +80,12 @@ resource "azurerm_machine_learning_compute_cluster" "gpu_cluster" {
   name                          = "gpu-cluster"
   location                      = azurerm_resource_group.rg.location
   vm_priority                   = "Dedicated"
-  vm_size                       = "Standard_NC64as_T4_v3"
+  vm_size                       = "Standard_NC4as_T4_v3"
   machine_learning_workspace_id = azurerm_machine_learning_workspace.aml_workspace.id
 
   scale_settings {
     min_node_count                       = 0
-    max_node_count                       = 25
+    max_node_count                       = 4
     scale_down_nodes_after_idle_duration = "PT30S" # 30 seconds
   }
 

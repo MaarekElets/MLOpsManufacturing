@@ -11,5 +11,5 @@ COPY src/requirements.deploy.txt /tmp/pip-tmp/
 COPY src/requirements.txt /tmp/pip-tmp/
 RUN pip install -U pytest
 RUN pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.txt \
-    pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.deploy.txt \
+    && pip --disable-pip-version-check --no-cache-dir install -r /tmp/pip-tmp/requirements.deploy.txt \
     && rm -rf /tmp/pip-tmp
