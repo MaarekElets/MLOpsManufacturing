@@ -3,7 +3,8 @@ pr: none
 trigger: none
 
 pool:
-  vmImage: 'ubuntu-latest'
+  name: "JW-Laptop"
+  vmImage: "ubuntu-latest"
 
 variables:
 - group: iac-aml-vg
